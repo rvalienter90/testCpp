@@ -1,22 +1,22 @@
 #define _GLIBCXX_USE_NANOSLEEP
 #include <iostream>
 #include <string>
-#include <thread>
-void callback(const std::string& data)
-{
-    std::cout << "Callback called because: " << data << '\n';
-}
-void task(int time)
-{
-    std::this_thread::sleep_for(std::chrono::seconds(time));
-    callback("async task done");
-}
+#include "threads.h"
+#include "plots.h"
+#include "randon.h"
+
 int main()
 {
     std::cout << "Hello, World!" << std::endl;
-    std::thread bt(task, 5);
-    std::cout << "async task launched\n";
-    std::this_thread::sleep_for(std::chrono::seconds(15));
-    std::cout << "main done\n";
-    bt.join();
+
+   /* */
+
+ //test_plot_basic();
+// test_plot_func_cont();
+// test_plot_scatter_cont();
+   // test_threads();
+    //test_threads2();
+test_randon_unif();
+test_rand();
+
 }
