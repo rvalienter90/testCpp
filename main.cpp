@@ -4,7 +4,8 @@
 //#include "threads.h"
 //#include "plots.h"
 //#include "randon.h"
-#include "pthreads.h"
+//#include "pthreads.h"
+#include "timetest.h"
 int main()
 {
     std::cout << "Hello, World!" << std::endl;
@@ -22,22 +23,31 @@ int main()
     //test_threads2();
 //test_randon_unif();
 //test_rand();
-    test_pthread_sleep_recurrent();
-    int count=0;
-while (1){
+    //test_pthread_sleep_recurrent();
 
-
-
-    auto start = std::chrono::high_resolution_clock::now();
-    sleep(2);
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double, std::milli> elapsed = end-start;
-    //std::cout << "Waited in main " << elapsed.count() << " ms\n";
-    count++;
-    if (count> 6)
-        break;
-
-}
 //
+test_time();
+test_clock();
+test_gettime();
+test_clock_gettime();
+test_chrono();
+
 }
 
+/*void test_thead(){
+    int count=0;
+    while (1){
+
+
+
+        auto start = std::chrono::high_resolution_clock::now();
+        sleep(2);
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double, std::milli> elapsed = end-start;
+        //std::cout << "Waited in main " << elapsed.count() << " ms\n";
+        count++;
+        if (count> 6)
+            break;
+
+    }
+}*/
