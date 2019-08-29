@@ -13,4 +13,4 @@ set(CMAKE_CXX_STANDARD 14)
 #target_include_directories(${PROJECT_NAME}  PRIVATE ${PYTHON_INCLUDE_DIRS})
 #target_link_libraries(${PROJECT_NAME}  ${PYTHON_LIBRARIES})
 
-add_executable(testCpp main.cpp Memory_alocation.cpp)
+add_executable(testCpp main.cpp memory_alocation.cpp)
