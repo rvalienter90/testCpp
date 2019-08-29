@@ -5,10 +5,15 @@
 //#include "plots.h"
 //#include "randon.h"
 //#include "pthreads.h"
-#include "timetest.h"
+//#include "timetest.h"
+
 int main()
 {
+
+
+
     std::cout << "Hello, World!" << std::endl;
+
 
    /* */
 //test_pthread0();
@@ -26,11 +31,11 @@ int main()
     //test_pthread_sleep_recurrent();
 
 //
-test_time();
+/*test_time();
 test_clock();
 test_gettime();
 test_clock_gettime();
-test_chrono();
+test_chrono();*/
 
 }
 
