@@ -21,4 +21,4 @@ set(CMAKE_CXX_STANDARD 14)
 
 #add_executable(network_com test_com.c ./lib/functions.c ./lib/comsim_eth.c  ./lib/functions.h ./lib/comsim_eth.h)
 #add_executable(testCpp main.cpp memory_alocation.cpp)
-add_executable(testCpp test_recv.c)
+add_executable(testCpp test_send.cpp)

@@ -131,6 +131,38 @@ int sendto_udp_struct(char *IP_addr, CUSTOM_bsm* pkt_to_send)
     return 0;
 
 }
+
+int sendto_udp_struct_broadcast(CUSTOM_bsm* pkt_to_send)
+{
+    // initialize socket and portnumber
+    int sock;
+    int portNumber = 12002;
+
+    // open UDP socket
+    if((sock=socket(AF_INET,SOCK_DGRAM,0))==-1) {printf("ERROR opening socket\n"); return 1;}
+
+    // Set broadcast permissions, return if fail
+    int broadcastEnable = 1;
+    int ret = setsockopt(sock, SOL_SOCKET, SO_BROADCAST, &broadcastEnable, sizeof(broadcastEnable));
+    if (ret == -1) {printf("ERROR setsockopt\n"); return 1;}
+
+    /* build the server's Internet address */
+    struct sockaddr_in sender_addr;
+    memset(&sender_addr, 0, sizeof(sender_addr));
+    sender_addr.sin_family = AF_INET;
+    sender_addr.sin_addr.s_addr = htonl(INADDR_BROADCAST); // for broadcast
+    sender_addr.sin_port = htons(portNumber);
+
+    // send message to location
+    if (sendto( sock, pkt_to_send, sizeof(CUSTOM_bsm), 0,(struct sockaddr *) &sender_addr, sizeof(sender_addr)) < 0)
+    {
+        //perror("sendto");
+        printf("ERROR sendto socket\n"); return 2;
+    }
+
+    return 0;
+
+}
 //broadcast
 int sendto_udp_broadcast(char *mobile_IP, char *message)
 {
@@ -190,7 +222,8 @@ int main() {
     pkt_to_send->lon=-2.1234124;
     pkt_to_send->alt=3.141234;
 
-    sendto_udp_struct(mobile_IP, pkt_to_send);
+    //sendto_udp_struct(mobile_IP, pkt_to_send);
+    sendto_udp_struct_broadcast(pkt_to_send);
     /*
 
     printf("Here is the message: id = %d, tx_time = %f s , lat=%f , lon=%f \n",pkt_to_send->id,
